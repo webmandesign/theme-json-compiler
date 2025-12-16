@@ -24,13 +24,7 @@ Install the package:
 npm install theme-json-compiler --save-dev
 ```
 
-Run the compiler:
-
-```console
-node src/test.js
-```
-
-Or integrate with Webpack:
+Integrate with Webpack:
 
 ```js
 // webpack.config.js
@@ -44,6 +38,16 @@ module.exports = {
     }),
   ],
 };
+```
+
+Standalone Compiler:
+
+```js
+const { compileJSON } = require('theme-json-compiler');
+compileJSON({
+    dir: 'example/theme-json',
+   output: 'theme.json'
+})
 ```
 
 ## Directory Structure
