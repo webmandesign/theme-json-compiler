@@ -96,8 +96,8 @@ This structure compiles to:
 
 ## File Naming Rules
 
-- **Regular files** (e.g., `color.json`): Becomes a key with that name (minus `.json`)
-- **Underscore files** (e.g., `_.json`): Properties are spread into the parent object level
+- **Regular files** (e.g., `color.js`): Becomes a key with that name (minus `.js`)
+- **Underscore files** (e.g., `_.js`): Properties are spread into the parent object level
 - **Directories**: Become nested keys in the output structure
 
 ## Supported File Types
