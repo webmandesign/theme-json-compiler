@@ -31,12 +31,12 @@ Integrate with Webpack:
 const { ThemeJsonCompiler } = require('theme-json-compiler');
 
 module.exports = {
-  plugins: [
-    new ThemeJsonCompiler({
-      dir: 'example/theme-json',
-      output: 'theme.json',
-    }),
-  ],
+   plugins: [
+      new ThemeJsonCompiler({
+         dir: 'example/theme-json',
+         output: 'theme.json',
+      }),
+   ],
 };
 ```
 
@@ -45,7 +45,7 @@ Standalone Compiler:
 ```js
 const { compileJSON } = require('theme-json-compiler');
 compileJSON({
-    dir: 'example/theme-json',
+   dir: 'example/theme-json',
    output: 'theme.json'
 })
 ```
