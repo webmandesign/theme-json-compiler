@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/theme-json-compiler)](https://www.npmjs.com/package/theme-json-compiler)
 
-Recursively compile WordPress [theme.json](https://developer.wordpress.org/block-editor/how-to-guides/themes/global-settings-and-styles/) from organized JSON and JavaScript files in a directory structure.
+Build WordPress [theme.json](https://developer.wordpress.org/block-editor/how-to-guides/themes/global-settings-and-styles/) by organizing your configuration files in a logical directory structure. The Theme JSON Compiler recursively merges JSON and JavaScript files into a single theme.json file.
 
 ## What It Does
 
