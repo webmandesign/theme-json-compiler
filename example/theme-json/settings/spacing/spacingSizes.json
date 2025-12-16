@@ -1,0 +1,12 @@
+[
+	{
+		"size": "var(--wp--custom--spacings--7-xs)",
+		"slug": "2",
+		"name": "-96px"
+	},
+	{
+		"size": "var(--wp--custom--spacings--6-xs)",
+		"slug": "3",
+		"name": "-64px"
+	}
+]

@@ -1,0 +1,8 @@
+{
+	"fontFamily": "var(--wp--custom--typography--body--font-family)",
+	"fontSize": "var(--wp--preset--font-size--base)",
+	"lineHeight": "var(--wp--custom--typography--body--line-height)",
+	"fontWeight": "var(--wp--custom--typography--body--font-weight)",
+	"fontStyle": "normal",
+	"letterSpacing": "var(--wp--custom--typography--body--letter-spacing)"
+}

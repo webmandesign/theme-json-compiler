@@ -1,0 +1,27 @@
+[
+	{
+		"slug": "brand-red",
+		"color": "var(--wp--custom--colors--brand--red)",
+		"name": "Brand Red"
+	},
+	{
+		"slug": "brand-cool-white",
+		"color": "var(--wp--custom--colors--brand--cool-white)",
+		"name": "Brand Cool White"
+	},
+	{
+		"slug": "brand-blue",
+		"color": "var(--wp--custom--colors--brand--blue)",
+		"name": "Brand Blue"
+	},
+	{
+		"slug": "brand-cream",
+		"color": "var(--wp--custom--colors--brand--cream)",
+		"name": "Brand Cream"
+	},
+	{
+		"slug": "white",
+		"color": "var(--wp--custom--colors--white)",
+		"name": "White"
+	}
+]

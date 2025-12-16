@@ -1,0 +1,14 @@
+{
+	"customSpacingSize": false,
+	"blockGap": false,
+	"margin": false,
+	"padding": false,
+	"units": [
+		"px",
+		"%",
+		"vh",
+		"vw"
+	],
+	"defaultSpacingSizes": false,
+	"spacingScale": {}
+}
