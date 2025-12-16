@@ -1,4 +1,4 @@
-[
+module.exports = [
 	{
 		"slug": "brand-red",
 		"color": "var(--wp--custom--colors--brand--red)",
@@ -24,4 +24,4 @@
 		"color": "var(--wp--custom--colors--white)",
 		"name": "White"
 	}
-]
+];

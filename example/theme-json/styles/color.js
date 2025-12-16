@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"text": "var(--wp--custom--colors--site-foreground)",
 	"background": "var(--wp--custom--colors--site-background)"
-}
+};

@@ -1,4 +1,4 @@
-[
+module.exports = [
 	{
 		"size": "var(--wp--custom--spacings--7-xs)",
 		"slug": "2",
@@ -9,4 +9,4 @@
 		"slug": "3",
 		"name": "-64px"
 	}
-]
+];

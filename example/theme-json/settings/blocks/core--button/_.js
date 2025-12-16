@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"border": {
 		"radius": false
 	},
@@ -13,4 +13,4 @@
 			}
 		]
 	}
-}
+};

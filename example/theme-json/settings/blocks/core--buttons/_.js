@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"spacing": {
 		"blockGap": true,
 		"margin": true
@@ -7,4 +7,4 @@
 		"fontFamilies": [],
 		"fontSizes": []
 	}
-}
+};

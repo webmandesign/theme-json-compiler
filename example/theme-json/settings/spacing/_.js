@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"customSpacingSize": false,
 	"blockGap": false,
 	"margin": false,
@@ -11,4 +11,4 @@
 	],
 	"defaultSpacingSizes": false,
 	"spacingScale": {}
-}
+};

@@ -1,207 +1,111 @@
-# Theme JSON for Developers
+# Theme JSON Compiler
 
-[![npm](https://img.shields.io/npm/v/theme-json-generator)](https://www.npmjs.com/package/theme-json-generator)
+[![npm](https://img.shields.io/npm/v/theme-json-compiler)](https://www.npmjs.com/package/theme-json-compiler)
 
-A Webpack plugin for programmatically generating WordPress [theme.json](https://developer.wordpress.org/block-editor/how-to-guides/themes/global-settings-and-styles/) with JavaScript from `tailwind.config` or another configuration file.
+Recursively compile WordPress [theme.json](https://developer.wordpress.org/block-editor/how-to-guides/themes/global-settings-and-styles/) from organized JSON and JavaScript files in a directory structure.
 
-## Core Concepts
+## What It Does
 
-- Use JavaScript functions to programmatically generate JSON files.
-- Reduce duplicate code by using the Tailwind variables to create `theme.json` parameters.
-- Writing JSON as JavaScript is efficient and allows for using variables and functions.
+This tool takes a structured directory of Javascript or JSON files and compiles them into a single, unified `theme.json` file. Instead of maintaining one large JSON file, you can organize your theme configuration across multiple smaller files for better maintainability.
+
+**Key Features:**
+
+- 🗂️ Organize theme configuration in a logical directory structure
+- 📦 Automatically compiles multiple JS/JSON files into a single `theme.json`
+- 🔄 Recursively processes all subdirectories
+- 💾 Use JavaScript to leverage variables, functions, and dynamic values instead of static JSON
+- ⚙️ Works as a standalone Node.js script or as a Webpack plugin
 
 ## Getting Started
 
-To begin, you'll need to install `theme-json-compiler`.
+Install the package:
 
 ```console
 npm install theme-json-compiler --save-dev
 ```
 
-Then add the plugin to your `webpack` config like so:
+Run the compiler:
+
+```console
+node src/test.js
+```
+
+Or integrate with Webpack:
 
 ```js
 // webpack.config.js
-const { ThemeJsonCompiler } = require( 'theme-json-compiler' );
+const { ThemeJsonCompiler } = require('theme-json-compiler');
 
 module.exports = {
- plugins: [
-  new ThemeJsonCompiler({
-   dir: 'src/theme.config.js',
-   output: 'theme.json',
-  }),
- ],
+  plugins: [
+    new ThemeJsonCompiler({
+      dir: 'example/theme-json',
+      output: 'theme.json',
+    }),
+  ],
 };
 ```
 
-## Config Parameters
+## Directory Structure
 
-| Option   | Description                                               | Default          | Type     |
-|----------|-----------------------------------------------------------|------------------|----------|
-| `dir`    | The source directory path used to generate  `theme.json`. | `src/theme-json` | `string` |
-| `output` | The output filename.                                      | `theme.json`     | `string` |
+Organize your files like this:
 
-**Note**: Do not use absolute filepaths using NodeJS `path` module in the `dir` or `output` options. These should be relative file paths based on the location of the originating script.
+```
+theme-json/
+├── settings/
+│   ├── _.json              # Spreads into parent level
+│   ├── color.json
+│   ├── layout.json
+│   └── spacing/
+│       ├── _.json
+│       └── spacingSizes.json
+└── styles/
+    └── elements.json
+```
 
-## theme.config.js
+This structure compiles to:
 
-`theme.config.js` is the JavaScript file used for compiling `theme.json`.
+```json
+{
+  "settings": {
+    "appearanceTools": false,
+    "useRootPaddingAwareAlignments": false,
+    "color": { ... },
+    "layout": { ... },
+    "spacing": {
+      "customSpacingSize": false,
+      "spacingSizes": [ ... ]
+    }
+  },
+  "styles": {
+    "elements": { ... }
+  }
+}
+```
 
-This file is essentially as JavaScript version of `theme.json` where functions and variables are used to build out the contents of the `json` file.
+## Configuration
 
-<details>
-  <summary>Code Example</summary>
+| Option   | Description                                | Default          | Type     |
+|----------|--------------------------------------------|------------------|----------|
+| `dir`    | Source directory path                      | `theme-json`     | `string` |
+| `output` | Output filename                            | `theme-json.json`| `string` |
 
-  In the code example below, Tailwind config values are passed into the `theme.config` and are used to generate the `theme.json` options.
+## File Naming Rules
 
-  ```js
-   // theme.config.js
-   const {transform} = require('theme-json-generator'); // Plugin helper for transforming data.
-   const {theme} = require('../tailwind.config.js'); // Import Tailwind config.
+- **Regular files** (e.g., `color.json`): Becomes a key with that name (minus `.json`)
+- **Underscore files** (e.g., `_.json`): Properties are spread into the parent object level
+- **Directories**: Become nested keys in the output structure
 
-   module.exports = {
-      settings: {
-         layout: {
-            contentSize: theme.extend.screens.desktop || '',
-         },
-         typography: {
-            lineHeight: false,
-            textDecoration: false,
-            textTransform: false,
-            dropCap: false,
-            fontSizes: [],
-            fontFamilies: [],
-         },
-         color: {
-            palette: transform('palette', theme.extend.colors),
-         },
-         blocks: {
-            'core/button': {
-               color: {
-                  background: true,
-                  text: true,
-                  gradients: [],
-                  palette: transform('palette', theme.extend.colors),
-               },
-            },
-            'core/pullquote': {
-               border: {
-                  radius: false,
-                  style: false,
-                  color: false,
-                  width: false,
-               },
-               typography: {
-                  fontSizes: [],
-               },
-            },
-            'core/buttons': {
-               layout: {},
-               typography: {
-                  fontSizes: [],
-               },
-            },
-            'core/heading': {
-               color: {
-                  text: true,
-                  background: true,
-                  palette: transform('palette', theme.extend.colors, [
-                     'blue',
-                     'teal',
-                     'cyan',
-                     'black',
-                  ]),
-                  link: false,
-               },
-            },
-         },
-      },
-      styles: {
-         typography: {
-            fontFamily: theme.extend.fontFamily.sans.toString(),
-            fontSize: theme.extend.fontSize.base,
-            lineHeight: '1.5',
-         },
-         elements: {
-            link: {
-               color: {
-                  text: theme.extend.colors.blue,
-               },
-               typography: {
-                  textDecoration: 'none',
-               },
-               ':hover': {
-                  color: {
-                     text: theme.extend.colors.black,
-                  },
-               },
-               ':focus': {
-                  color: {
-                     text: theme.extend.colors.black,
-                  },
-               },
-            },
-            cite: {
-               typography: {
-                  fontSize: theme.extend.fontSize['14'],
-                  fontStyle: 'normal',
-                  fontWeight: '800',
-                  textTransform: 'uppercase',
-               },
-            },
-         },
-         blocks: {
-            'core/quote': {
-               typography: {
-                  fontSize: theme.extend.fontSize['20'],
-                  fontWeight: '400',
-               },
-               color: {
-                  text: theme.extend.colors.text,
-                  background: theme.extend.colors.bkg,
-               },
-               spacing: {
-                  padding: {
-                     top: theme.spacing[5],
-                     right: theme.spacing[5],
-                     bottom: theme.spacing[5],
-                     left: theme.spacing[5],
-                  },
-                  margin: {
-                     bottom: theme.spacing[5],
-                  },
-               },
-            },
-            'core/heading': {
-               typography: {
-                  fontWeight: '700',
-               },
-               color: {
-                  text: theme.extend.colors.heading,
-               },
-               spacing: {
-                  margin: {
-                     bottom: theme.spacing[3],
-                  },
-               },
-            },
-            'core/paragraph': {
-               typography: {
-                  lineHeight: '1.5',
-               },
-               color: {
-                  text: theme.extend.colors.text,
-               },
-               spacing: {
-                  margin: {
-                     top: '0',
-                     bottom: theme.spacing[5],
-                  },
-               },
-            },
-         },
-      },
-   };
-   ```
+## Supported File Types
 
-</details>
+The compiler supports both **JSON** and **JavaScript** files (`.json` and `.js`). JavaScript files must export a valid object using `module.exports`:
+
+```js
+// color.js
+module.exports = {
+  text: "var(--wp--custom--colors--site-foreground)",
+  background: "var(--wp--custom--colors--site-background)"
+};
+```
+
+This allows you to use dynamic values, import external configs, or leverage JavaScript logic in your theme configuration.

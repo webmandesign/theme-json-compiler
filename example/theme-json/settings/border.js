@@ -1,6 +1,6 @@
-{
+module.exports = {
 	"color": false,
 	"radius": false,
 	"style": false,
 	"width": false
-}
+};

@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"caption": {
 		"color": {
 			"text": "var(--wp--custom--colors--site-foreground)"
@@ -43,4 +43,4 @@
 			}
 		}
 	}
-}
+};

@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"background": false,
 	"custom": false,
 	"customDuotone": false,
@@ -11,4 +11,4 @@
 	"link": false,
 	"palette": [],
 	"text": false
-}
+};

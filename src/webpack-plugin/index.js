@@ -4,7 +4,7 @@ const fs = require('fs');
 const defaults = {
    path: addTrailingSlash(path.resolve('./')),
    dir: 'src/theme-json',
-   output: 'theme-test.json',
+   output: 'theme.json',
    schema: 'https://schemas.wp.org/trunk/theme.json',
    version: 3,
 };
