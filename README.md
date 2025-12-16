@@ -57,14 +57,14 @@ Organize your files like this:
 ```
 theme-json/
 ├── settings/
-│   ├── _.json              # Spreads into parent level
-│   ├── color.json
-│   ├── layout.json
+│   ├── _.js              # Spreads into parent level
+│   ├── color.js
+│   ├── layout.js
 │   └── spacing/
-│       ├── _.json
-│       └── spacingSizes.json
+│       ├── _.js
+│       └── spacingSizes.js
 └── styles/
-    └── elements.json
+    └── elements.js
 ```
 
 This structure compiles to:
