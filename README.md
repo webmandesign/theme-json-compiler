@@ -47,7 +47,7 @@ const { compileJSON } = require('theme-json-compiler');
 compileJSON({
    dir: 'example/theme-json',
    output: 'theme.json'
-})
+});
 ```
 
 ## Directory Structure
