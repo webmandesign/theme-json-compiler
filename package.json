@@ -1,7 +1,7 @@
 {
 	"name": "theme-json-compiler",
 	"version": "0.0.1",
-	"description": "Generate WordPress theme.json from other sources.",
+	"description": "The Theme JSON Compiler recursively merges JSON and JavaScript files into a single theme.json file.",
 	"source": "src/index.js",
 	"main": "dist/index.js",
 	"scripts": {
@@ -24,10 +24,6 @@
 		"generator",
 		"theme.json",
 		"theme json",
-		"json",
-		"tailwind",
-		"tailwind.config",
-		"tailwind config",
 		"WordPress",
 		"WordPress Theme JSON",
 		"webpack",
