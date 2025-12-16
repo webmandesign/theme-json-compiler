@@ -102,7 +102,7 @@ This structure compiles to:
 
 ## Supported File Types
 
-The compiler supports both **JSON** and **JavaScript** files (`.json` and `.js`). JavaScript files must export a valid object using `module.exports`:
+The compiler supports **JavaScript** and **JSON** files (`.json`, `.js`, `ts`).
 
 ```js
 // color.js
@@ -111,5 +111,7 @@ module.exports = {
   background: "var(--wp--custom--colors--site-background)"
 };
 ```
+
+**Note**: JavaScript files must export a valid object using `module.exports`.
 
 This allows you to use dynamic values, import external configs, or leverage JavaScript logic in your theme configuration.
