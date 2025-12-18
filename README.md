@@ -89,10 +89,12 @@ This structure compiles to:
 
 ## Configuration
 
-| Option   | Description                                | Default          | Type     |
-|----------|--------------------------------------------|------------------|----------|
-| `dir`    | Source directory path                      | `theme-json`     | `string` |
-| `output` | Output filename                            | `theme-json.json`| `string` |
+| Option    | Description                                                 | Default                                   | Type     |
+|-----------|-------------------------------------------------------------|-------------------------------------------|----------|
+| `dir`     | The relative directory path used to generate  `theme.json`. | `src/theme-json`                          | `string` |
+| `output`  | The output filename.                                        | `theme.json`                              | `string` |
+| `schema`  | The schema URL.                                             | `https://schemas.wp.org/trunk/theme.json` | `string` |
+| `version` | The schema version.                                         | `3`                                       | `number` |
 
 ## File Naming Rules
 
