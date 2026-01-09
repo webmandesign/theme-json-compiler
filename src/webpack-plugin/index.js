@@ -1,5 +1,6 @@
-const path = require('path');
-const fs = require('fs');
+import fs from 'fs';
+import {createRequire} from 'module';
+import path from 'path';
 
 const defaults = {
    path: addTrailingSlash(path.resolve('./')),
@@ -14,13 +15,13 @@ const defaults = {
  *
  * @see https://webpack.js.org/contribute/writing-a-plugin/
  */
-class ThemeJSONCompiler {
+class ThemeJsonCompiler {
    constructor(options) {
       this.name = 'theme-json-compiler';
       this.options = options;
    }
    apply(compiler) {
-      compiler.hooks.done.tap('ThemeJSONCompiler', () => {
+      compiler.hooks.done.tap('ThemeJsonCompiler', () => {
          const logger = compiler.getInfrastructureLogger(this.name);
          compileJSON(this.options, logger);
       });
@@ -108,7 +109,7 @@ function walkDirectory(dir, baseDir = null) {
             case 'jsx':
             case 'ts':
             case 'tsx':
-               const content = requireUncached(filePath); // Load and require JavaScript file.
+               const content = importUncached(filePath); // Load and require JavaScript file.
                if (key === '_') {
                   Object.assign(result, content); // If key is `_`, spread it into the current level
                } else {
@@ -146,7 +147,7 @@ function walkDirectory(dir, baseDir = null) {
    return result;
 }
 
-export {ThemeJSONCompiler, compileJSON};
+export {compileJSON, ThemeJsonCompiler};
 
 /**
  * Add trailing slash to a string if not present.
@@ -244,11 +245,24 @@ function validatePaths(params, webpackLogger = false) {
 }
 
 /**
- * Uncache a NodeJS require module.
+ * Load a module using require (works for CommonJS modules).
  *
- * @param {string} module The module path to uncache.
+ * @param {string} filePath The file path to require.
  */
-function requireUncached(module) {
-   delete require.cache[require.resolve(module)];
-   return require(module);
+function importUncached(filePath) {
+   try {
+      const require = createRequire(import.meta.url);
+      const resolvedPath = path.resolve(filePath);
+
+      // Clear from cache
+      delete require.cache[resolvedPath];
+
+      // Use require directly
+      const result = require(resolvedPath);
+      return result;
+   } catch (err) {
+      console.error(`Error loading ${filePath}:`, err.message);
+      console.error('Stack:', err.stack);
+      return {};
+   }
 }

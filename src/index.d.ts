@@ -1,4 +1,4 @@
-export interface ThemeJSONCompilerOptions {
+export interface ThemeJsonCompilerOptions {
    path?: string;
    dir?: string;
    output?: string;
@@ -6,12 +6,12 @@ export interface ThemeJSONCompilerOptions {
    version?: number;
 }
 
-export class ThemeJSONCompiler {
-   constructor(options?: ThemeJSONCompilerOptions);
+export class ThemeJsonCompiler {
+   constructor(options?: ThemeJsonCompilerOptions);
    apply(compiler: any): void;
 }
 
 export function compileJSON(
-   options?: ThemeJSONCompilerOptions,
+   options?: ThemeJsonCompilerOptions,
    webpackLogger?: any
 ): void;

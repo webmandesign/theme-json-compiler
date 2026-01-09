@@ -1,1 +1,1 @@
-export {ThemeJSONCompiler, compileJSON} from './webpack-plugin';
+export {ThemeJsonCompiler, compileJSON} from './webpack-plugin';
