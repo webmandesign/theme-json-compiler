@@ -1,9 +1,15 @@
 {
 	"name": "theme-json-compiler",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "The Theme JSON Compiler recursively merges JSON and JavaScript files into a single theme.json file.",
 	"source": "src/index.js",
-	"main": "dist/index.js",
+	"main": "dist/index.cjs",
+	"module": "dist/index.module.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"require": "./dist/index.cjs",
+		"default": "./dist/index.module.js"
+	},
 	"scripts": {
 		"dev": "microbundle watch",
 		"build": "rm -rf dist && microbundle"
