@@ -8,6 +8,7 @@ const defaults = {
    output: 'theme.json',
    schema: 'https://schemas.wp.org/trunk/theme.json',
    version: 3,
+   indentation: '\t',
 };
 
 /**
@@ -58,7 +59,7 @@ function compileJSON(options, webpackLogger = false) {
       };
 
       try {
-         fs.writeFileSync(paths.output, JSON.stringify(data, null, 2));
+         fs.writeFileSync(paths.output, JSON.stringify(data, null, params.indentation));
          console.log(`✅ Successfully compiled ${params.output}`);
       } catch (err) {
          console.error(`❌ Error writing output file:`, err.message);
